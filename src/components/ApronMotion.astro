@@ -1,0 +1,132 @@
+---
+/**
+ * Subtle SVG motion overlay for the dusk apron hero.
+ * Paths suggest arrivals (glide), departures (climb), and a baggage tug route.
+ * Animation is CSS-driven; disabled under prefers-reduced-motion.
+ */
+---
+
+<svg
+  class="apron-motion"
+  viewBox="0 0 1280 720"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id="pathFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7eb8e8" stop-opacity="0" />
+      <stop offset="35%" stop-color="#7eb8e8" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#f0c27a" stop-opacity="0.15" />
+    </linearGradient>
+    <linearGradient id="climbFade" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f0c27a" stop-opacity="0" />
+      <stop offset="40%" stop-color="#ffd59a" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Arrival / glide path (descending toward apron right) -->
+  <g class="apron-motion__track apron-motion__track--arrive">
+    <path
+      class="apron-motion__path"
+      d="M 80 220 C 280 260, 520 340, 760 420"
+      fill="none"
+      stroke="url(#pathFade)"
+      stroke-width="1.5"
+      stroke-dasharray="6 10"
+      stroke-linecap="round"
+    />
+    <circle class="apron-motion__dot apron-motion__dot--arrive" r="3.5" fill="#cfe7fb">
+      <animateMotion
+        path="M 80 220 C 280 260, 520 340, 760 420"
+        dur="11s"
+        repeatCount="indefinite"
+        rotate="auto"
+      />
+    </circle>
+  </g>
+
+  <!-- Departure / climb -->
+  <g class="apron-motion__track apron-motion__track--depart">
+    <path
+      class="apron-motion__path"
+      d="M 520 480 C 680 400, 860 280, 1120 140"
+      fill="none"
+      stroke="url(#climbFade)"
+      stroke-width="1.5"
+      stroke-dasharray="4 12"
+      stroke-linecap="round"
+    />
+    <g class="apron-motion__craft apron-motion__craft--depart">
+      <path d="M -10 0 L 8 -3 L 10 0 L 8 3 Z" fill="#ffe6b8" opacity="0.9" />
+      <animateMotion
+        path="M 520 480 C 680 400, 860 280, 1120 140"
+        dur="14s"
+        begin="2s"
+        repeatCount="indefinite"
+        rotate="auto"
+      />
+    </g>
+  </g>
+
+  <!-- Baggage tug path across foreground apron -->
+  <g class="apron-motion__track apron-motion__track--tug">
+    <path
+      class="apron-motion__path"
+      d="M 1180 620 C 980 640, 720 650, 420 630"
+      fill="none"
+      stroke="#f0a060"
+      stroke-opacity="0.45"
+      stroke-width="1.25"
+      stroke-dasharray="3 8"
+      stroke-linecap="round"
+    />
+    <g class="apron-motion__tug">
+      <rect x="-14" y="-5" width="18" height="8" rx="1.5" fill="#e8a050" opacity="0.85" />
+      <rect x="5" y="-4" width="10" height="6" rx="1" fill="#c87838" opacity="0.7" />
+      <rect x="16" y="-3.5" width="10" height="5.5" rx="1" fill="#c87838" opacity="0.55" />
+      <animateMotion
+        path="M 1180 620 C 980 640, 720 650, 420 630"
+        dur="18s"
+        begin="1s"
+        repeatCount="indefinite"
+        rotate="auto"
+      />
+    </g>
+  </g>
+</svg>
+
+<style>
+  .apron-motion {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .apron-motion__path {
+    opacity: 0.85;
+  }
+
+  .apron-motion__dot,
+  .apron-motion__craft,
+  .apron-motion__tug {
+    filter: drop-shadow(0 0 4px rgba(255, 220, 160, 0.35));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .apron-motion__dot,
+    .apron-motion__craft,
+    .apron-motion__tug {
+      display: none;
+    }
+
+    .apron-motion__path {
+      stroke-dasharray: none;
+      opacity: 0.35;
+    }
+  }
+</style>

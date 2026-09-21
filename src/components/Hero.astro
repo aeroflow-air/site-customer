@@ -1,0 +1,39 @@
+---
+import ApronMotion from './ApronMotion.astro';
+
+interface Props {
+  title: string;
+  lede: string;
+  tag?: string;
+}
+
+const { title, lede, tag = 'Product · airport operations' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const heroSrc = `${base}hero-dusk-apron.jpg`;
+---
+
+<section class="hero" aria-label="AeroFlow Air product introduction">
+  <div class="hero__media" aria-hidden="true">
+    <img
+      class="hero__img"
+      src={heroSrc}
+      alt=""
+      width="1280"
+      height="720"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <div class="hero__shade"></div>
+    <ApronMotion />
+  </div>
+
+  <div class="hero__content wrap">
+    <p class="hero__tag">{tag}</p>
+    <h1 class="hero__title">{title}</h1>
+    <p class="hero__lede">{lede}</p>
+    <div class="btn-row hero__actions">
+      <a class="btn btn--on-dark" href={`${base}engineering/`}>Engineering notes</a>
+      <a class="btn btn--ghost-on-dark" href={`${base}platform/`}>Platform decisions</a>
+    </div>
+  </div>
+</section>
