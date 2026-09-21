@@ -1,0 +1,37 @@
+---
+interface Props {
+  current?: 'home' | 'engineering' | 'platform';
+}
+
+const { current } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href={base}>AeroFlow Air</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li>
+          <a href={base} aria-current={current === 'home' ? 'page' : undefined}>Home</a>
+        </li>
+        <li>
+          <a
+            href={`${base}engineering/`}
+            aria-current={current === 'engineering' ? 'page' : undefined}
+          >
+            Engineering
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${base}platform/`}
+            aria-current={current === 'platform' ? 'page' : undefined}
+          >
+            Platform
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

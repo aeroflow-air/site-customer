@@ -1,0 +1,50 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: 'home' | 'engineering' | 'platform';
+}
+
+const {
+  title,
+  description = 'AeroFlow Air — airport operations product and platform engineering notes.',
+  current,
+} = Astro.props;
+
+const pageTitle = title.includes('AeroFlow') ? title : `${title} · AeroFlow Air`;
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap"
+      rel="stylesheet"
+    />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Header current={current} />
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          AeroFlow Air is a fictional portfolio company. Decisions live in
+          <a href="https://github.com/aeroflow-air/platform-handbook">platform-handbook</a>;
+          this site narrates the product face and the engineering blog.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
