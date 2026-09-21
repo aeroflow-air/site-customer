@@ -28,7 +28,9 @@ jobs:
           cache: npm
 
       - name: Install
-        run: npm ci
+        # package-lock.json (185KB) exceeds GitHub MCP push payload limits.
+        # Follow-up: add lockfile via git/gh and switch back to npm ci.
+        run: npm install
 
       - name: Build
         run: npm run build
