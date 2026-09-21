@@ -6,12 +6,18 @@ interface Props {
   title: string;
   description?: string;
   current?: 'home' | 'engineering' | 'platform';
+  /** Product marketing vs quieter engineering/docs track */
+  track?: 'product' | 'engineering';
+  /** Drop default main padding (full-bleed heroes) */
+  flush?: boolean;
 }
 
 const {
   title,
   description = 'AeroFlow Air — airport operations product and platform engineering notes.',
   current,
+  track = current === 'engineering' ? 'engineering' : 'product',
+  flush = false,
 } = Astro.props;
 
 const pageTitle = title.includes('AeroFlow') ? title : `${title} · AeroFlow Air`;
@@ -32,8 +38,8 @@ const pageTitle = title.includes('AeroFlow') ? title : `${title} · AeroFlow Air
     />
     <title>{pageTitle}</title>
   </head>
-  <body>
-    <Header current={current} />
+  <body class:list={[track === 'engineering' && 'track-eng', flush && 'flush-main']}>
+    <Header current={current} track={track} />
     <main>
       <slot />
     </main>

@@ -1,61 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
 
 const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
   title="AeroFlow Air"
-  description="Fictional airport operations product from AeroFlow Air — with the real story in the engineering blog."
+  description="Gate readiness, deviation signals, and turnaround flow — a fictional airport ops product from a squad of six."
   current="home"
+  track="product"
+  flush
 >
-  <div class="wrap">
-    <p class="tag">Product · airport operations</p>
-    <h1>Keep the apron moving without drowning ops in screens</h1>
-    <p class="lede">
-      AeroFlow Air is a fictional airport product we use to exercise real platform
-      engineering: golden paths, decision records, and reusable CI for a squad of
-      about six. The product face stays small on purpose.
-    </p>
+  <Hero
+    title="Keep the apron moving without drowning ops in screens"
+    lede="AeroFlow Air is a fictional airport system for a squad of about six: gate readiness, deviation signals, and turnaround flow on the apron — not another enterprise control-tower theatre."
+  />
 
-    <div class="btn-row">
-      <a class="btn" href={`${base}engineering/`}>Read the engineering blog</a>
-      <a class="btn btn--ghost" href={`${base}platform/`}>Platform decisions</a>
-    </div>
-
-    <div class="card-grid">
-      <article class="card">
-        <h2>Gate readiness</h2>
+  <div class="wrap below-hero">
+    <h2 class="section-label">What ops actually looks at</h2>
+    <div class="card-grid pillars">
+      <article class="card card--pillar">
+        <p class="pillar-kicker">01</p>
+        <h3>Gate readiness</h3>
         <p>
-          A single view of turnaround status — boarding, catering, fuel, cleaning —
-          so duty managers spend less time stitching radio calls and more time
-          unblocking the next departure.
+          One view of boarding, catering, fuel, and cleaning so duty managers
+          unblock the next departure instead of stitching radio calls.
         </p>
       </article>
-      <article class="card">
-        <h2>Deviation signals</h2>
+      <article class="card card--pillar">
+        <p class="pillar-kicker">02</p>
+        <h3>Deviation signals</h3>
         <p>
-          Lightweight alerts when a turnaround drifts off the plan. No enterprise
-          “control tower” theatre; just the signals a small ops team can act on
-          before the queue builds.
+          Lightweight alerts when a turnaround drifts off plan — signals a small
+          ops team can act on before the queue builds.
         </p>
       </article>
-      <article class="card">
-        <h2>Built on a golden path</h2>
+      <article class="card card--pillar">
+        <p class="pillar-kicker">03</p>
+        <h3>Turnaround flow</h3>
         <p>
-          Services start from a thin .NET template and shared Actions. The
-          interesting work is in
-          <a href={`${base}platform/`}>platform-handbook ADRs</a>, not another
-          framework package.
+          Baggage and apron movement in the same picture as the gate: tug paths,
+          load status, and the handoffs that keep the aircraft on the clock.
         </p>
       </article>
     </div>
 
-    <h2>Who this is for</h2>
-    <p>
-      Hiring managers and curious engineers who want the narrative without cloning
-      every repo. Operators of real airports will find better tools elsewhere —
-      this site exists to show how we decide, ship, and write things down.
-    </p>
+    <section class="closing">
+      <h2>Built for a squad of six</h2>
+      <p>
+        The product face stays small on purpose. The real story is how we decide
+        and ship: golden-path services, handbook ADRs, and an engineering blog
+        that narrates accepted work without duplicating the decisions.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={`${base}engineering/`}>Read the engineering blog</a>
+        <a class="btn btn--ghost" href={`${base}platform/`}>Platform decisions</a>
+      </div>
+    </section>
   </div>
 </BaseLayout>
