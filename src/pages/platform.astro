@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const handbook = 'https://github.com/aeroflow-air/platform-handbook';
+const adrs = [
+  {
+    id: 'ADR-0001',
+    title: 'Organisation and repository layout',
+    href: `${handbook}/blob/main/docs/adr/0001-organisation-and-repository-layout.md`,
+  },
+  {
+    id: 'ADR-0002',
+    title: 'Decision records and design docs',
+    href: `${handbook}/blob/main/docs/adr/0002-decision-records-and-design-docs.md`,
+  },
+  {
+    id: 'ADR-0003',
+    title: 'Public site and engineering blog on GitHub Pages',
+    href: `${handbook}/blob/main/docs/adr/0003-public-site-and-engineering-blog.md`,
+    note: 'Draft — this site implements it.',
+  },
+];
+---
+
+<BaseLayout
+  title="Platform"
+  description="Links into AeroFlow platform-handbook ADRs. Decisions are not copied here."
+  current="platform"
+>
+  <div class="wrap wrap--narrow">
+    <h1>Platform</h1>
+    <p class="lede">
+      Decision records live in
+      <a href={handbook}>platform-handbook</a>. This page only links out — we do
+      not duplicate ADR text on the marketing site.
+    </p>
+
+    <h2>Architecture decision records</h2>
+    <ul class="adr-list">
+      {
+        adrs.map((adr) => (
+          <li>
+            <a href={adr.href}>
+              <strong>{adr.id}</strong> — {adr.title}
+            </a>
+            {adr.note && <p class="meta">{adr.note}</p>}
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>Related repos</h2>
+    <ul>
+      <li>
+        <a href="https://github.com/aeroflow-air/template-dotnet-service">
+          template-dotnet-service
+        </a>
+        — golden-path ASP.NET Core starting point
+      </li>
+      <li>
+        <a href="https://github.com/aeroflow-air/aeroflow-workflows">
+          aeroflow-workflows
+        </a>
+        — reusable GitHub Actions
+      </li>
+      <li>
+        <a href="https://github.com/aeroflow-air/site-customer">site-customer</a>
+        — this site
+      </li>
+    </ul>
+
+    <p class="meta">
+      Prefer a PR against the handbook if a decision is unsettled. Blog posts
+      narrate accepted (or deliberately experimental) work; they are not a
+      substitute for ADRs.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Engineering"
+  description="Engineering blog for AeroFlow Air — golden paths, CI, and platform phases."
+  current="engineering"
+>
+  <div class="wrap wrap--narrow">
+    <h1>Engineering</h1>
+    <p class="lede">
+      Notes from building the AeroFlow platform: what we shipped, which ADR
+      justified it, and what we deliberately left out. The handbook stays the
+      source of truth for decisions.
+    </p>
+
+    <ul class="post-list">
+      {
+        posts.map((post) => (
+          <li>
+            <p class="meta">{formatDate(post.data.pubDate)} · {post.data.author}</p>
+            <a href={`${base}engineering/${post.id}/`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+            {post.data.tags.length > 0 && (
+              <p>
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

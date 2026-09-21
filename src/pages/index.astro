@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="AeroFlow Air"
+  description="Fictional airport operations product from AeroFlow Air — with the real story in the engineering blog."
+  current="home"
+>
+  <div class="wrap">
+    <p class="tag">Product · airport operations</p>
+    <h1>Keep the apron moving without drowning ops in screens</h1>
+    <p class="lede">
+      AeroFlow Air is a fictional airport product we use to exercise real platform
+      engineering: golden paths, decision records, and reusable CI for a squad of
+      about six. The product face stays small on purpose.
+    </p>
+
+    <div class="btn-row">
+      <a class="btn" href={`${base}engineering/`}>Read the engineering blog</a>
+      <a class="btn btn--ghost" href={`${base}platform/`}>Platform decisions</a>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <h2>Gate readiness</h2>
+        <p>
+          A single view of turnaround status — boarding, catering, fuel, cleaning —
+          so duty managers spend less time stitching radio calls and more time
+          unblocking the next departure.
+        </p>
+      </article>
+      <article class="card">
+        <h2>Deviation signals</h2>
+        <p>
+          Lightweight alerts when a turnaround drifts off the plan. No enterprise
+          “control tower” theatre; just the signals a small ops team can act on
+          before the queue builds.
+        </p>
+      </article>
+      <article class="card">
+        <h2>Built on a golden path</h2>
+        <p>
+          Services start from a thin .NET template and shared Actions. The
+          interesting work is in
+          <a href={`${base}platform/`}>platform-handbook ADRs</a>, not another
+          framework package.
+        </p>
+      </article>
+    </div>
+
+    <h2>Who this is for</h2>
+    <p>
+      Hiring managers and curious engineers who want the narrative without cloning
+      every repo. Operators of real airports will find better tools elsewhere —
+      this site exists to show how we decide, ship, and write things down.
+    </p>
+  </div>
+</BaseLayout>
