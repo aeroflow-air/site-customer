@@ -1,0 +1,27 @@
+name: PR build check
+
+# Runs on every PR (no paths filter) because `pr-build` is a required status
+# check on main. A path-filtered required check would leave some PRs blocked.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pr-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
