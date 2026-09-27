@@ -9,13 +9,13 @@ tags:
   - ci
 ---
 
-AeroFlow’s product face is a fictional airport ops tool. The work that matters for the portfolio is how a small squad starts a new service without inventing a framework.
+AeroFlow Air is a platform demo, and the fictional airport is the problem space it works on. The work that matters for the portfolio is how a small squad starts a new service without inventing a framework.
 
 ## What “golden path” means here
 
 We published [`template-dotnet-service`](https://github.com/aeroflow-air/template-dotnet-service): an ASP.NET Core Web API starter with health checks, structured logging, ProblemDetails, and a stub for OpenTelemetry. Composition stays in `Program.cs`. There is no heavy shared NuGet that every squad must inherit.
 
-Create a service with **Use this template** on GitHub, or clone and rename. Keep the layout: `src/`, `tests/`, `Dockerfile`, and a local CI workflow. Rename the solution and namespaces to match the service (`svc-booking`, and so on).
+Create a service with **Use this template** on GitHub, or clone and rename. Keep the layout: `src/`, `tests/`, `Dockerfile`, and `.github/workflows/ci.yml`. Rename the solution and namespaces to match the service (`svc-booking`, and so on).
 
 What we deliberately left out of the template:
 
@@ -31,6 +31,8 @@ Infrastructure as Bicep/AVM will land under `infra/` when the modules are ready.
 The template ships a **local** GitHub Actions workflow that restores, builds, and tests on every push and pull request. Job-level `permissions` are explicit because the organisation `GITHUB_TOKEN` is read-only by default.
 
 Reusable build/test workflows belong in [`aeroflow-workflows`](https://github.com/aeroflow-air/aeroflow-workflows). Today that repo focuses on decisions validation — we do **not** invent a broken `workflow_call` reference. When a quality-gate workflow is published, the template’s job should call it; until then local CI is honest and green.
+
+**Update, 27 September 2026:** that workflow now exists. `aeroflow-workflows` publishes a reusable .NET build-and-test workflow as `v0.1.0`, and the template’s CI calls it pinned to that tag.
 
 ## Where decisions live
 
