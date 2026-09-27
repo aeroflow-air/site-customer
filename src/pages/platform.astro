@@ -5,19 +5,34 @@ const handbook = 'https://github.com/aeroflow-air/platform-handbook';
 const adrs = [
   {
     id: 'ADR-0001',
-    title: 'Organisation and repository layout',
-    href: `${handbook}/blob/main/docs/adr/0001-organisation-and-repository-layout.md`,
+    title: 'Repository naming convention',
+    status: 'accepted',
+    href: `${handbook}/blob/main/docs/decisions/0001-repository-naming-convention.md`,
   },
   {
     id: 'ADR-0002',
-    title: 'Decision records and design docs',
-    href: `${handbook}/blob/main/docs/adr/0002-decision-records-and-design-docs.md`,
+    title: 'Infrastructure as code — Bicep with typed module contracts',
+    status: 'accepted',
+    href: `${handbook}/blob/main/docs/decisions/0002-infrastructure-as-code-bicep.md`,
   },
   {
     id: 'ADR-0003',
     title: 'Public site and engineering blog on GitHub Pages',
-    href: `${handbook}/blob/main/docs/adr/0003-public-site-and-engineering-blog.md`,
-    note: 'Draft — this site implements it.',
+    status: 'draft',
+    href: `${handbook}/blob/main/docs/decisions/0003-public-site-and-engineering-blog.md`,
+    note: 'This site follows it, but lives in the site-customer repo rather than the www repo the draft names.',
+  },
+  {
+    id: 'ADR-0004',
+    title: 'Functional-style C# for service code',
+    status: 'accepted',
+    href: `${handbook}/blob/main/docs/decisions/0004-functional-style-csharp.md`,
+  },
+  {
+    id: 'ADR-0005',
+    title: 'Quality skill lives in the squad, not a QA department',
+    status: 'accepted',
+    href: `${handbook}/blob/main/docs/decisions/0005-squad-integrated-quality.md`,
   },
 ];
 ---
@@ -42,9 +57,9 @@ const adrs = [
         adrs.map((adr) => (
           <li>
             <a href={adr.href}>
-              <strong>{adr.id}</strong> — {adr.title}
+              <strong>{adr.id}</strong>: {adr.title}
             </a>
-            {adr.note && <p class="meta">{adr.note}</p>}
+            <p class="meta">Status: {adr.status}{adr.note ? `. ${adr.note}` : ''}</p>
           </li>
         ))
       }
@@ -62,7 +77,15 @@ const adrs = [
         <a href="https://github.com/aeroflow-air/aeroflow-workflows">
           aeroflow-workflows
         </a>
-        — reusable GitHub Actions
+        — reusable GitHub Actions workflows
+      </li>
+      <li>
+        <a href="https://github.com/aeroflow-air/svc-flight-status">svc-flight-status</a>
+        — first service, flight lifecycle
+      </li>
+      <li>
+        <a href="https://github.com/aeroflow-air/svc-gate-allocation">svc-gate-allocation</a>
+        — second service, gate allocation
       </li>
       <li>
         <a href="https://github.com/aeroflow-air/site-customer">site-customer</a>

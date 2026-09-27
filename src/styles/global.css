@@ -153,7 +153,7 @@ pre code {
   text-decoration: underline;
 }
 
-.nav__product[aria-current="page"] {
+.nav__home[aria-current="page"] {
   font-weight: 600;
 }
 
@@ -515,4 +515,43 @@ body.track-eng .post-list a {
     margin-inline: auto;
     padding: 3rem 0 2.5rem;
   }
+}
+
+/* —— "What's actually built" status badges —— */
+
+.status {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1d5a2e;
+  background: #e3f1e6;
+  border: 1px solid #c3e0ca;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  margin: 0 0 0.6rem;
+}
+
+.status--next {
+  color: var(--muted);
+  background: #efebe5;
+  border-color: var(--line);
+}
+
+.card--pillar h3 a {
+  color: var(--ink);
+}
+
+.card--pillar h3 + .pillar-kicker {
+  margin-top: -0.25rem;
+}
+
+/* Full-width card closing a grid (keeps a seventh card from sitting alone) */
+.card-grid .card--span {
+  grid-column: 1 / -1;
+}
+
+.domain-label {
+  margin-top: 3rem;
 }
