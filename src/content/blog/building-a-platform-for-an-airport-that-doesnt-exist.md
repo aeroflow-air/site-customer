@@ -27,7 +27,7 @@ So far that means:
 
 - **A golden-path service template.** A .NET service with health checks, ProblemDetails error handling and tests. It's designed to be copied, so it has to be the best example of how we build.
 - **Reusable CI workflows.** These are versioned and pinned by tag, so a change to the shared pipeline can't silently break every service.
-- **Infrastructure as code in Bicep.** It's built on Azure Verified Modules rather than hand-rolled templates.
+- **A decision to use Bicep on Azure Verified Modules for infrastructure as code,** recorded in [ADR-0002](https://github.com/aeroflow-air/platform-handbook/blob/main/docs/decisions/0002-infrastructure-as-code-bicep.md). The modules themselves are next.
 - **A handbook of Architecture Decision Records.** They're validated in CI, with main protected so a record can't skip its review lifecycle.
 - **The first real service, `svc-flight-status`.** It models the flight lifecycle as a pure domain, with an API over the top.
 
