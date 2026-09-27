@@ -153,7 +153,7 @@ pre code {
   text-decoration: underline;
 }
 
-.nav__product[aria-current="page"] {
+.nav__home[aria-current="page"] {
   font-weight: 600;
 }
 
@@ -545,6 +545,11 @@ body.track-eng .post-list a {
 
 .card--pillar h3 + .pillar-kicker {
   margin-top: -0.25rem;
+}
+
+/* Full-width card closing a grid (keeps a seventh card from sitting alone) */
+.card-grid .card--span {
+  grid-column: 1 / -1;
 }
 
 .domain-label {
