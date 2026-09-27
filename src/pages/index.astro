@@ -3,37 +3,112 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 
 const base = import.meta.env.BASE_URL;
+const org = 'https://github.com/aeroflow-air';
+
+// Every item here was checked against the repo it links to.
+// "Built" = code exists in the repo; "Live" = deployed; "Next" = decided, not built.
+const built = [
+  {
+    name: 'Golden-path .NET service template',
+    repo: 'template-dotnet-service',
+    href: `${org}/template-dotnet-service`,
+    status: 'Built',
+    text: 'A thin ASP.NET Core (.NET 8) starting point for new services: health checks, structured logging, ProblemDetails, a Dockerfile and tests, with no shared framework package.',
+  },
+  {
+    name: 'Reusable CI workflows',
+    repo: 'aeroflow-workflows',
+    href: `${org}/aeroflow-workflows`,
+    status: 'Built',
+    text: 'A reusable .NET restore, build and test workflow, released as v0.1.0. The template and the service repos call it pinned to that tag.',
+  },
+  {
+    name: 'Platform handbook',
+    repo: 'platform-handbook',
+    href: `${org}/platform-handbook`,
+    status: 'Built',
+    text: 'Architecture decision records with a checked lifecycle. A validator runs on every PR, checks format and status changes, and blocks edits to accepted records. Main is protected by that check. Five ADRs so far: four accepted, one draft.',
+  },
+  {
+    name: 'Flight status service',
+    repo: 'svc-flight-status',
+    href: `${org}/svc-flight-status`,
+    status: 'Built',
+    text: 'The first service, created from the template. It models a flight from scheduling to arrival as a pure domain in functional-style C# (ADR-0004), with an HTTP API and tests. It runs locally or in a container and is not deployed yet.',
+  },
+  {
+    name: 'This site',
+    repo: 'site-customer',
+    href: `${org}/site-customer`,
+    status: 'Live',
+    text: 'Astro, deployed to GitHub Pages from main by GitHub Actions. Every PR has to pass a build check before it can merge.',
+  },
+  {
+    name: 'Infrastructure as code on Azure',
+    repo: 'platform-handbook · ADR-0002',
+    href: `${org}/platform-handbook/blob/main/docs/decisions/0002-infrastructure-as-code-bicep.md`,
+    status: 'Next',
+    text: 'Bicep, with thin platform modules over Azure Verified Modules. The decision is accepted (ADR-0002), but no Bicep has been written yet.',
+  },
+];
 ---
 
 <BaseLayout
   title="AeroFlow Air"
-  description="Gate readiness, deviation signals, and turnaround flow — a fictional airport ops product from a squad of six."
+  description="An Azure-native internal developer platform, built in the open for a fictional airport. A portfolio demo by Tony Joanes."
   current="home"
   track="product"
   flush
 >
   <Hero
-    title="Keep the apron moving without drowning ops in screens"
-    lede="AeroFlow Air is a fictional airport system for a squad of about six: gate readiness, deviation signals, and turnaround flow on the apron — not another enterprise control-tower theatre."
+    tag="Portfolio · platform engineering"
+    title="An Azure-native developer platform, built in the open for an airport that doesn't exist"
+    lede="AeroFlow Air is a portfolio demo by Tony Joanes. The airport is made up, but it gives the platform realistic problems to work on: delays, gate changes and tight turnarounds."
   />
 
   <div class="wrap below-hero">
-    <h2 class="section-label">What ops actually looks at</h2>
+    <h2 class="section-label">What's actually built</h2>
+    <p class="meta">
+      Each item links to a public repository in the aeroflow-air organisation.
+      “Next” means the decision is made but the work has not started.
+    </p>
+    <div class="card-grid">
+      {
+        built.map((item) => (
+          <article class="card card--pillar">
+            <p class:list={['status', item.status === 'Next' && 'status--next']}>
+              {item.status}
+            </p>
+            <h3>
+              <a href={item.href}>{item.name}</a>
+            </h3>
+            <p class="pillar-kicker">{item.repo}</p>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <h2 class="section-label domain-label">The domain we're building for</h2>
+    <p class="meta">
+      The airport is where the platform gets its problems. These are product
+      ideas the services could grow into. They are not shipped software.
+    </p>
     <div class="card-grid pillars">
       <article class="card card--pillar">
         <p class="pillar-kicker">01</p>
         <h3>Gate readiness</h3>
         <p>
-          One view of boarding, catering, fuel, and cleaning so duty managers
-          unblock the next departure instead of stitching radio calls.
+          One view of boarding, catering, fuel and cleaning, so a duty manager
+          can unblock the next departure without stitching together radio calls.
         </p>
       </article>
       <article class="card card--pillar">
         <p class="pillar-kicker">02</p>
         <h3>Deviation signals</h3>
         <p>
-          Lightweight alerts when a turnaround drifts off plan — signals a small
-          ops team can act on before the queue builds.
+          Early warnings when a turnaround drifts off plan, so a small ops team
+          can act before the queue builds.
         </p>
       </article>
       <article class="card card--pillar">
@@ -41,21 +116,20 @@ const base = import.meta.env.BASE_URL;
         <h3>Turnaround flow</h3>
         <p>
           Baggage and apron movement in the same picture as the gate: tug paths,
-          load status, and the handoffs that keep the aircraft on the clock.
+          load status and the handoffs that keep an aircraft on schedule.
         </p>
       </article>
     </div>
 
     <section class="closing">
-      <h2>Built for a squad of six</h2>
+      <h2>Follow along</h2>
       <p>
-        The product face stays small on purpose. The real story is how we decide
-        and ship: golden-path services, handbook ADRs, and an engineering blog
-        that narrates accepted work without duplicating the decisions.
+        The engineering blog explains what was built and why, with links back
+        to the decision records in the platform handbook.
       </p>
       <div class="btn-row">
         <a class="btn" href={`${base}engineering/`}>Read the engineering blog</a>
-        <a class="btn btn--ghost" href={`${base}platform/`}>Platform decisions</a>
+        <a class="btn btn--ghost" href={`${base}platform/`}>Platform handbook</a>
       </div>
     </section>
   </div>
