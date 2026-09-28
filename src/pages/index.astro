@@ -58,6 +58,26 @@ const built = [
     text: 'Bicep, with squads self-serving through governed platform modules only. The decision is accepted (ADR-0006, which supersedes ADR-0002), but no Bicep has been written yet.',
   },
 ];
+
+// Ways to follow the project, rendered in "Follow along".
+// Add a LinkedIn entry here once the profile URL is confirmed.
+const follow = [
+  {
+    label: 'RSS feed',
+    href: `${base}rss.xml`,
+    text: 'New engineering blog posts in your feed reader.',
+  },
+  {
+    label: 'GitHub: aeroflow-air',
+    href: org,
+    text: 'Every repository is public. Star or watch the ones you want to follow.',
+  },
+  {
+    label: 'Discussions',
+    href: `${org}/platform-handbook/discussions`,
+    text: 'Challenge a decision record or ask a question in the platform handbook.',
+  },
+];
 ---
 
 <BaseLayout
@@ -138,6 +158,16 @@ const built = [
         <a class="btn" href={`${base}engineering/`}>Read the engineering blog</a>
         <a class="btn btn--ghost" href={`${base}platform/`}>Platform handbook</a>
       </div>
+      <ul class="post-list">
+        {
+          follow.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+              <p>{item.text}</p>
+            </li>
+          ))
+        }
+      </ul>
     </section>
   </div>
 </BaseLayout>
