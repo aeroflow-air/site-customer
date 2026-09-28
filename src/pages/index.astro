@@ -27,7 +27,7 @@ const built = [
     repo: 'platform-handbook',
     href: `${org}/platform-handbook`,
     status: 'Built',
-    text: 'Architecture decision records with a checked lifecycle. A validator runs on every PR, checks format and status changes, and blocks edits to accepted records. Main is protected by that check. Six ADRs so far: five accepted, one in review.',
+    text: 'Architecture decision records with a checked lifecycle. A validator runs on every PR, checks format and status changes, and blocks edits to accepted records. Main is protected by that check. Six ADRs so far: five accepted, one superseded.',
   },
   {
     name: 'Flight status service',
@@ -52,10 +52,10 @@ const built = [
   },
   {
     name: 'Infrastructure as code on Azure',
-    repo: 'platform-handbook · ADR-0002',
-    href: `${org}/platform-handbook/blob/main/docs/decisions/0002-infrastructure-as-code-bicep.md`,
+    repo: 'platform-handbook · ADR-0006',
+    href: `${org}/platform-handbook/blob/main/docs/decisions/0006-governed-bicep-modules-only.md`,
     status: 'Next',
-    text: 'Bicep, with thin platform modules over Azure Verified Modules. The decision is accepted (ADR-0002), but no Bicep has been written yet.',
+    text: 'Bicep, with squads self-serving through governed platform modules only. The decision is accepted (ADR-0006, which supersedes ADR-0002), but no Bicep has been written yet.',
   },
 ];
 ---

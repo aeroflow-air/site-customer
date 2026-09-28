@@ -31,6 +31,8 @@ So far that means:
 - **A handbook of Architecture Decision Records.** They're validated in CI, with main protected so a record can't skip its review lifecycle.
 - **The first real service, `svc-flight-status`.** It models the flight lifecycle as a pure domain, with an API over the top.
 
+**Update, 28 September 2026:** ADR-0002 has been superseded by [ADR-0006](https://github.com/aeroflow-air/platform-handbook/blob/main/docs/decisions/0006-governed-bicep-modules-only.md). Squads now self-serve through governed Bicep modules only.
+
 ## How I want it to work
 
 The tools matter less than the patterns and processes around them, and that's where most of my opinions are:
