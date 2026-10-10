@@ -15,13 +15,7 @@ AeroFlow Air is my fictional airline platform. I use it to show Azure-native pla
 
 On 10 October 2026 I ran the whole airport on my own Windows machine with one command. This post covers how it fits together, what broke on the way, and why I chose to do it this way.
 
-<!--
-TODO (Tony): add the Aspire dashboard screenshot at
-public/images/engineering/running-the-whole-airport-locally/aspire-dashboard.png
-then uncomment the line below.
-
 ![The Aspire dashboard with every AeroFlow resource Running](/site-customer/images/engineering/running-the-whole-airport-locally/aspire-dashboard.png)
--->
 
 ## The rule: zero Azure cost
 
