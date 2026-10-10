@@ -84,7 +84,7 @@ builder.Build().Run();
 It didn't work first time. The first run on a Linux box took five attempts, and each failure taught me something.
 
 1. **Aspire wants HTTPS.** With the plain `http` launch profile, the dashboard refuses to start unless `ASPIRE_ALLOW_UNSECURED_TRANSPORT` is set. Fine for a local stack, but it needs to be explicit.
-2. **Everyone wanted port 5000.** The placeholders all fell back to Kestrel's default port and fought over it.
+2. **Everyone wanted port 5000.** The placeholders had no launch settings, so they all fell back to Kestrel's default port and fought over it. The fix was a `launchSettings.json` for each one, giving them their own ports from 5101 to 5107.
 3. **8080 clashed with Keycloak.** The real services' launch settings pinned them to 8080, which is also Keycloak's port. Rather than edit the service repos for a local concern, the AppHost clears the host port and lets Aspire assign one (the `e.Port = null` line above).
 4. **Docker networking on Linux.** A Docker bridge `FORWARD DROP` iptables rule stopped the emulator reaching SQL Server. That one took the longest to find.
 
