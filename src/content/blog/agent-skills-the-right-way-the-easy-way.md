@@ -98,10 +98,12 @@ A rule an agent can skip is a suggestion. The rules that matter have to fail a b
 - Decision records are validated on every PR.
 - Skill copies must match their pin.
 
+It helps to be clear about what each check guards. The drift check guards the instructions: it proves the skills an agent reads are the released ones, and says nothing about the code the agent writes. The code is guarded by analysers and tests. The skill files and `AGENTS.md` are guarded by CODEOWNERS, so a change to them asks the platform team for review (this is going into the template alongside the architecture tests below).
+
 **Not enforced yet:**
 
 - Business event ids at 10,000 or above. This needs a small analyser.
-- No logging or I/O in domain code. This needs an architecture test.
+- No logging, I/O or clock reads in domain code. Architecture tests for this are going into the template first, in review as I write this. The services don't have them yet.
 - ProblemDetails on every error response.
 - Options validated at startup.
 - `docs/service.md` updated when behaviour changes. Today only the AI reviewer checks this.
