@@ -1,0 +1,24 @@
+# Backstage catalogue entry for this repo (ADR-0024, platform-handbook#123).
+# Discovered by the aeroflow-air Backstage instance (aeroflow-air/backstage).
+# Domains, Systems and the event-bus Resource live in platform-handbook/catalog/.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: site-customer
+  title: Public site and engineering blog
+  description: >-
+    Astro site and engineering blog on GitHub Pages (ADR-0003).
+  annotations:
+    github.com/project-slug: aeroflow-air/site-customer
+  links:
+    - url: https://aeroflow-air.github.io/site-customer/
+      title: Live site
+  tags:
+    - astro
+    - github-pages
+spec:
+  type: website
+  # production: the only thing in the org serving real users (GitHub Pages).
+  lifecycle: production
+  owner: group:platform
+  system: public-site
