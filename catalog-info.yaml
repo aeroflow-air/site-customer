@@ -18,7 +18,7 @@ metadata:
     - github-pages
 spec:
   type: website
-  # production: the only thing in the org serving real users (GitHub Pages).
-  lifecycle: production
+  # experimental: nothing in the org is called production yet (ADR-0024).
+  lifecycle: experimental
   owner: group:platform
   system: public-site
